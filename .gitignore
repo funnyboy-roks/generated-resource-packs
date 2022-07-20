@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules/
+
+*out*/
+textures/
+**/*.zip
+**/*.png
+**/*.mcmeta
+**/*.jar
+
+**/*TMP/
+**/*TMP

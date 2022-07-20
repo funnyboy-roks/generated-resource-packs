@@ -1,0 +1,14 @@
+{
+  "name": "resource-packs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.16.0",
+    "zip-local": "^0.3.5"
+  }
+}
