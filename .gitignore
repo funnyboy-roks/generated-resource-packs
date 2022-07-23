@@ -2,7 +2,7 @@
 node_modules/
 
 *out*/
-textures/
+textures*/
 **/*.zip
 **/*.png
 **/*.mcmeta

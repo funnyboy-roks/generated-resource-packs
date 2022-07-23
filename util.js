@@ -96,4 +96,37 @@ const zip = (folder, deleteFolder) => {
     }
 }
 
-module.exports = { makePackFolder, getAllFiles, splitPath, rgba, rgbToHsv, zip };
+/**
+ * 
+ * @param {{r: Number|BigInt, g: Number|BigInt, b: Number|BigInt}} a 
+ * @param {{r: Number|BigInt, g: Number|BigInt, b: Number|BigInt}} b
+ */
+const distSq = (a, b) => {
+
+    return (Number(a.r) - Number(b.r)) ** 2 +
+        (Number(a.g) - Number(b.g)) ** 2 +
+        (Number(a.b) - Number(b.b)) ** 2;
+
+}
+
+/**
+ * 
+ * @param {{r: Number|BigInt, g: Number|BigInt, b: Number|BigInt}} a 
+ * @param {{r: Number|BigInt, g: Number|BigInt, b: Number|BigInt}} b
+ */
+const dist = (a, b) => {
+
+    return Math.sqrt(distSq(a, b));
+
+}
+
+/**
+ * 
+ * @param {{r: Number|BigInt, g: Number|BigInt, b: Number|BigInt}} a
+ */
+const toBigInt = (a) => {
+    return BigInt(a.r) << 24n | BigInt(a.g) << 16n | BigInt(a.b) << 8n | BigInt(a.a || 255);
+
+}
+
+module.exports = { makePackFolder, getAllFiles, splitPath, rgba, rgbToHsv, zip, dist, distSq, toBigInt };
