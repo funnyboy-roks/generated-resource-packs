@@ -12,7 +12,7 @@ const makePackFolder = (name, description) => {
     });
     fs.writeFileSync(`${name}/pack.mcmeta`, JSON.stringify({
         pack: {
-            pack_format: 9,
+            pack_format: 12,
             description,
         }
     }, null, 4));
