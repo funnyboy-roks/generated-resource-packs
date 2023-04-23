@@ -1,12 +1,12 @@
-const Jimp = require('jimp');
-const fs = require('fs');
-const path = require('path');
-const { makePackFolder, getAllFiles, splitPath, rgbToHsv, zip, distSq, rgba, toBigInt } = require('./util');
+import Jimp from 'jimp';
+import fs from 'fs';
+import path from 'path';
+import { makePackFolder, getAllFiles, splitPath, rgbToHsv, zip, distSq, rgba, toBigInt, run } from './util.js';
 
 const processImage = async (inPath, outPath) => {
     const img = await Jimp.read(inPath)
     let pixels = [];
-    let r = g = b = 0n;
+    let [r, g, b] = [0n, 0n, 0n];
     for (let x = 0; x < img.getWidth(); ++x) {
         for (let y = 0; y < img.getHeight(); ++y) {
             let c = rgba(img.getPixelColour(x, y));
@@ -38,32 +38,4 @@ const processImage = async (inPath, outPath) => {
     await img.writeAsync(outPath);
 }
 
-const run = async () => {
-    const files = getAllFiles('./textures');
-    const name = 'Sorted';
-    makePackFolder(name, '§6All Textures are Sorted\n§3By: funnyboy_roks');
-    // files.splice(0, files.length);
-    // files.push('pack.png');
-
-    for(const filePath of files) {
-        const {folder, file} = splitPath(filePath);
-        console.log(folder + '/' + file);
-        const src = path.join('./textures', folder, file);
-        const dest = file === 'pack.png' ? path.join(`./${name}`, folder, file) : path.join(`./${name}/assets/minecraft/textures`, folder, file);
-
-        if(src.endsWith('.png')) {
-            await processImage(src, dest);
-        } else {
-            if(!fs.lstatSync(src).isDirectory()){
-                fs.copyFileSync(src, dest);
-            }
-        }
-
-    }
-    if (process.argv[2] === 'zip') {
-        console.log('Zipping...');
-        zip(name, true);
-    }
-};
-
-run();
+run('Sorted', '§6All Textures are Sorted', processImage);

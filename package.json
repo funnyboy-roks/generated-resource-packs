@@ -10,5 +10,6 @@
   "dependencies": {
     "jimp": "^0.16.0",
     "zip-local": "^0.3.5"
-  }
+  },
+  "type": "module"
 }
