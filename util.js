@@ -14,10 +14,10 @@ export const makePackFolder = (name, description) => {
     });
     fs.writeFileSync(`${name}/pack.mcmeta`, JSON.stringify({
         pack: {
-            pack_format: 18,
+            pack_format: 42,
             supported_versions: {
                 min_inclusive: 3,
-                max_inclusive: 18,
+                max_inclusive: 42,
             },
             description,
         }
@@ -208,7 +208,7 @@ export const run = async (name, desc, processImage) => {
 
     for (const filePath of files) {
         const { folder, file } = splitPath(filePath);
-        console.log(`${name} - ${folder}/${file}`);
+        //console.log(`${name} - ${folder}/${file}`);
 
         const src = path.join('textures', folder, file);
         const dest = file === 'pack.png'

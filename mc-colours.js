@@ -1,7 +1,7 @@
 import Jimp from 'jimp';
 import fs from 'fs';
 import path from 'path';
-import { makePackFolder, getAllFiles, splitPath, rgba, zip, distSq } from './util.js';
+import { makePackFolder, getAllFiles, splitPath, rgba, zip, distSq, run } from './util.js';
 
 const mcColours = {
     0x000000: rgba(0x00000000),
@@ -30,7 +30,7 @@ const processImage = async (inPath, outPath) => {
             const { r, g, b, a } = rgba(c);
             let min = Infinity;
             let col = 0;
-            for([k, v] of Object.entries(mcColours)) {
+            for(const [k, v] of Object.entries(mcColours)) {
                 const d = distSq({ r, g, b }, v);
                 if (d < min) {
                     min = d;

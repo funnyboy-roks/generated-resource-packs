@@ -5,7 +5,12 @@ import { makePackFolder, getAllFiles, splitPath, rgba, zip, run } from './util.j
 
 const processImage = async (inPath, outPath) => {
     const img = await Jimp.read(inPath)
-    let r = g = b = a = pxs = 0n;
+    let r;
+    let g;
+    let b;
+    let a;
+    let pxs;
+    r = g = b = a = pxs = 0n;
     for (let x = 0; x < img.getWidth(); ++x) {
         for (let y = 0; y < img.getHeight(); ++y) {
             let c = img.getPixelColour(x, y);
